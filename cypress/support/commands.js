@@ -79,3 +79,20 @@ Cypress.Commands.add('moveCard', (fromListName, cardName, toListName) => {
   // Close the edit card popup
   boardPage.getCloseButtonInEditCardPopup().click();
 });
+
+/**
+ * This code is used for handling uncaught exceptions that occur during test execution.
+ * Specifically, it addresses errors that originate from the application rather than from Cypress itself.
+ * 
+ *  We are configuring Cypress to ignore a specific type of error message related to the 
+ * `ResizeObserver` API. The `ResizeObserver loop completed with undelivered notifications` warning is common
+ * in applications and does not typically affect test functionality.
+ */
+Cypress.on('uncaught:exception', (err, runnable) => {
+  // Ignore ResizeObserver related errors
+  if (err.message.includes('ResizeObserver loop completed with undelivered notifications')) {
+    return false; // Prevent Cypress from failing the test
+  }
+  // Allow other uncaught exceptions to fail the test
+  return true;
+});
