@@ -9,6 +9,12 @@ class BoardPage{
       return cy.contains('Create board');
    }
 
+
+   getCreateButtonInPopup(){
+    return cy.get("button[data-testid='create-board-submit-button']");
+  }
+   
+
    getBoardTitleInputBox(){
       return cy.get("input[type='text']");
    }

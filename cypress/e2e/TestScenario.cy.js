@@ -12,7 +12,8 @@ describe('Creating board, adding list', () => {
     //Creating boards steps
     boardPage.getCreateButton().click();
     boardPage.getCreateABoardButton().click();
-    boardPage.getBoardTitleInputBox().type("VaultN{enter}")
+    boardPage.getBoardTitleInputBox().type("VaultN")
+    boardPage.getCreateButtonInPopup().click();
 
     //assertion of created board "VaultN"
     cy.contains('VaultN').should('exist');
